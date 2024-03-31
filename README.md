@@ -5,7 +5,7 @@
   <img src="demo/demo-tic-tac-toe.gif" alt="Demo Tic Tac Toe" />
 </p>
 
-## Where does this code from?
+## Where does this code came from?
 
 This code is from the beginner react tic-tac-toe tutorial.
 The additional features and improvements mentioned at the end of the tutorial are also implemented.
