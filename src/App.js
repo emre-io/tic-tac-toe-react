@@ -71,6 +71,32 @@ function Board({ xIsNext, squares, onPlay }) {
   );
 }
 
+function SortButton({ isAscending, setIsAscending }) {
+  let sortButtonDescription;
+  if (isAscending) {
+    sortButtonDescription = "Sort in descending order";
+  } else {
+    sortButtonDescription = "Sort in ascending order";
+  }
+
+  function handleSort(isAscending) {
+    if (isAscending) {
+      setIsAscending(false);
+    } else {
+      setIsAscending(true);
+    }
+  }
+
+  return (
+    <button
+      className="text-sm bg-desc-button-col rounded px-2 py-1 mb-2"
+      onClick={() => handleSort(isAscending)}
+    >
+      {sortButtonDescription}
+    </button>
+  );
+}
+
 export default function Game() {
   const [history, setHistory] = useState([
     { squares: Array(9).fill(null), index: -1 },
@@ -113,13 +139,20 @@ export default function Game() {
     if (move === currentMove) {
       return (
         <li key={move}>
-          <p className="inline-block text-sm bg-desc-button-col rounded px-2 py-1 mt-2" >{description}</p>
+          <p className="inline-block text-sm bg-desc-button-col rounded px-2 py-1 mt-2">
+            {description}
+          </p>
         </li>
       );
     } else {
       return (
         <li key={move}>
-          <button className="text-sm bg-timetravel-button-col rounded px-2 py-1 mt-2" onClick={() => jumpTo(move)}>{description}</button>
+          <button
+            className="text-sm bg-timetravel-button-col rounded px-2 py-1 mt-2"
+            onClick={() => jumpTo(move)}
+          >
+            {description}
+          </button>
         </li>
       );
     }
@@ -127,37 +160,14 @@ export default function Game() {
 
   return (
     <div className="game flex justify-evenly">
-        <div className="game-board">
-          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-        </div>
-        <div className="game-info py-2">
-          <SortButton isAscending={isAscending} setIsAscending={setIsAscending} />
-          <ol>{isAscending ? moves : moves.slice().reverse()}</ol>
-        </div>
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info py-2 ">
+        <SortButton isAscending={isAscending} setIsAscending={setIsAscending} />
+        <ol>{isAscending ? moves : moves.slice().reverse()}</ol>
+      </div>
     </div>
-  );
-}
-
-function SortButton({ isAscending, setIsAscending }) {
-  let sortButtonDescription;
-  if (isAscending) {
-    sortButtonDescription = "Sort in descending order";
-  } else {
-    sortButtonDescription = "Sort in ascending order";
-  }
-
-  function handleSort(isAscending) {
-    if (isAscending) {
-      setIsAscending(false);
-    } else {
-      setIsAscending(true);
-    }
-  }
-
-  return (
-    <button className="text-sm bg-desc-button-col rounded px-2 py-1 mb-2" onClick={() => handleSort(isAscending)}>
-      {sortButtonDescription}
-    </button>
   );
 }
 

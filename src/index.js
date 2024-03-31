@@ -8,13 +8,11 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <div className="container mx-auto bg-white px-4 py-2 rounded border-solid border-2">
-      <div className="flex flex-col items-center justify-center justify-items-center">
-        <div className="text-xl font-bold">
-          Tic Tac Toe
-        </div>
-        <div className="w-full">
-          <App />
-        </div>
+      <div className="text-xl font-bold text-center">
+        Tic Tac Toe
+      </div>
+      <div className="w-full">
+        <App />
       </div>
     </div>
     
