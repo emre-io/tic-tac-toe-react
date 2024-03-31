@@ -1,8 +1,9 @@
 # Tic-tac-toe
 
 ## Demo 
-
-![Demo Tic Tac Toe](demo/demo-tic-tac-toe.gif)
+<p align="center">
+  <img src="demo/demo-tic-tac-toe.gif" alt="Demo Tic Tac Toe" />
+</p>
 
 ## Where does this code from?
 
