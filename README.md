@@ -1,18 +1,40 @@
 # Tic-tac-toe
 
 ## Demo 
-<p align="center">
-  <img src="demo/demo-tic-tac-toe.gif" alt="Demo Tic Tac Toe" />
-</p>
+<div class="row">
+  <div class="column">
+    <img 
+      src="demo/demo-screenshot-mobile-tic-tac-toe.png" 
+      alt="Mobile demo Tic Tac Toe"
+    />
+  </div>
+  <div class="column">
+    <img 
+      src="demo/demo-screenshot-pc-tic-tac-toe.png" 
+      alt="PC demo Tic Tac Toe"
+    />
+  </div>
+</div>
+
+<style>
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.column {
+  height: 370px;
+}
+</style>
 
 ## Where does this code came from?
 
-This code is from the beginner react tic-tac-toe tutorial.
-The additional features and improvements mentioned at the end of the tutorial are also implemented.
+The base for this project was devloped while completing tic-tac-toe [tutorial](https://react.dev/learn/tutorial-tic-tac-toe) for react on Mar 31 24.
+Additional features and improvements mentioned at the end of the tutorial are also implemented.
 
 ## Setup
 
-Open the project root directory and then install the dependencies via `npm install`. Then use `npm start` to start a local server and follow the prompts to view the code running in a browser.
+Open the project root directory and then install the dependencies via `pnpm install`. Then use `pnpm start` to start a local server and follow the prompts to view the code running in a browser.
 
 ## Features/Improvements
 

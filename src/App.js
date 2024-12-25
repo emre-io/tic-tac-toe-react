@@ -1,16 +1,23 @@
 import { useState } from "react";
 
-function Square({ value, onSquareClick, winning = false }) {
-  let squareClass = "square " + (winning ? "winning-square " : "");
+function Square({ id, value, onSquareClick, winning = false }) {
+  let squareClass = "square" + (winning ? " winning-square" : "");
 
   return (
-    <button className={squareClass} onClick={onSquareClick}>
+    <button
+      type="button"
+      title={"Select square # " + id}
+      key={id}
+      id={id}
+      className={squareClass + " text-7xl md:text-9xl"}
+      onClick={onSquareClick}
+    >
       {value}
     </button>
   );
 }
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, onPlay, winningLine }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -24,23 +31,11 @@ function Board({ xIsNext, squares, onPlay }) {
     onPlay(nextSquares, i);
   }
 
-  const winnerInfo = calculateWinner(squares);
-  const winner = winnerInfo ? winnerInfo[0] : null;
-  const winningLine = winnerInfo ? winnerInfo[1] : [];
-
-  let status;
-  if (winner) {
-    status = "Winner: " + winner;
-  } else if (squares.filter((x) => !!x).length == 9) {
-    // filter null
-    status = "Draw";
-  } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
-  }
-
   function renderSquare(i) {
     return (
       <Square
+        key={i}
+        id={i}
         value={squares[i]}
         onSquareClick={() => handleClick(i)}
         winning={winningLine.includes(i)}
@@ -52,31 +47,24 @@ function Board({ xIsNext, squares, onPlay }) {
   for (let row = 0; row < 3; row++) {
     let boardRow = [];
     for (let col = 0; col < 3; col++) {
-      boardRow.push(
-        <span key={row * 3 + col}>{renderSquare(row * 3 + col)}</span>
-      );
+      boardRow.push(renderSquare(row * 3 + col));
     }
     boardSquares.push(
-      <div className="board-row" key={row}>
+      <div key={row} className="board-row">
         {boardRow}
       </div>
     );
   }
 
-  return (
-    <>
-      <div className="status text-sm text-center">{status}</div>
-      <>{boardSquares}</>
-    </>
-  );
+  return <div className="board">{boardSquares}</div>;
 }
 
-function SortButton({ isAscending, setIsAscending }) {
+function SortButton({ isAscending, setIsAscending, twcss }) {
   let sortButtonDescription;
   if (isAscending) {
-    sortButtonDescription = "Sort in descending order";
+    sortButtonDescription = "Moves in descending order";
   } else {
-    sortButtonDescription = "Sort in ascending order";
+    sortButtonDescription = "Moves in ascending order";
   }
 
   function handleSort(isAscending) {
@@ -89,7 +77,8 @@ function SortButton({ isAscending, setIsAscending }) {
 
   return (
     <button
-      className="text-sm bg-desc-button-col rounded px-2 py-1 mb-2"
+      className= {"sort-button " + twcss}
+      type="button"
       onClick={() => handleSort(isAscending)}
     >
       {sortButtonDescription}
@@ -104,6 +93,7 @@ export default function Game() {
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove].squares;
+  const [selectedMove, setSelectedMove] = useState(-1);
 
   let [isAscending, setIsAscending] = useState(0);
 
@@ -120,15 +110,27 @@ export default function Game() {
     const nextHistory = [...history.slice(0, nextMove + 1)];
     setHistory(nextHistory);
     setCurrentMove(nextMove);
+    setSelectedMove(-1);
   }
 
-  // squares are elements of history and move are indexes
+  const winnerInfo = calculateWinner(currentSquares);
+  const winner = winnerInfo ? winnerInfo[0] : null;
+  const winningLine = winnerInfo ? winnerInfo[1] : [];
+
+  let status;
+  if (winner) {
+    status = "Winner is " + winner + ".";
+    // filter null
+  } else if (currentSquares.filter((x) => !!x).length == 9) {
+    status = "It is a draw.";
+  } else {
+    status = "Next player is " + (xIsNext ? "X" : "O") + ".";
+  }
+
   const moves = history.map((turnInfo, move) => {
     let description;
     if (move === 0) {
       description = "Go to game start";
-    } else if (move === currentMove) {
-      description = "You are at move #" + move;
     } else if (move > 0) {
       const row = Math.floor(turnInfo.index / 3);
       const col = turnInfo.index % 3;
@@ -136,38 +138,116 @@ export default function Game() {
       description =
         "Go to move #" + move + " - " + symbol + "(" + row + ", " + col + ")";
     }
-    if (move === currentMove) {
-      return (
-        <li key={move}>
-          <p className="inline-block text-sm bg-desc-button-col rounded px-2 py-1 mt-2">
-            {description}
-          </p>
-        </li>
-      );
-    } else {
-      return (
-        <li key={move}>
-          <button
-            className="text-sm bg-timetravel-button-col rounded px-2 py-1 mt-2"
-            onClick={() => jumpTo(move)}
-          >
-            {description}
-          </button>
-        </li>
-      );
-    }
+    return (
+      <option key={move} value={move}>
+        {description}
+      </option>
+    );
   });
+  // Add default option.
+  moves.unshift(
+    <option key={"id" + Math.random().toString(16).slice(2)}>
+      {" "}
+      Select move to timetravel{" "}
+    </option>
+  );
+  // Delete option for You are at move # move.
+  if (moves.length > 0) moves.splice(moves.length - 1, 1);
 
   return (
-    <div className="game flex justify-evenly">
-      <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+    <>
+      <div
+        className="h-screen w-screen 
+          grid grid-rows-12 grid-cols-12"
+      >
+        <div
+          className="pb-2 self-end
+            row-start-4 row-end-5 
+            col-start-2 col-end-12
+            md:col-start-5 md:col-end-9"
+        >
+          <div className="text-3xl md:text-5xl text-center">
+            Tic-Tac-Toe
+          </div>
+        </div>
+        <div
+          className="size-full self-center
+          row-start-5 row-end-9 
+          col-start-2 col-end-12
+          md:col-start-5 md:col-end-9"
+        >
+          <Board
+            xIsNext={xIsNext}
+            squares={currentSquares}
+            winningLine={winningLine}
+            onPlay={handlePlay}
+          />
+        </div>
+        <div
+          className="pt-2 self-start
+          row-start-9 row-end-10
+          col-start-2 col-end-12
+          md:col-start-4 md:col-end-10"
+        >
+          <div
+            className="text-center
+            text-2xl 
+            md:text-3xl md:pb-2"
+          >
+            {status}
+          </div>
+          <div
+            className="text-center pb-2
+            text-2xl 
+            md:text-3xl"
+          >
+            {currentMove > 0
+              ? "You are at move #" + currentMove + "."
+              : "Make your first move."}
+          </div>
+          <div
+            className="text-center pb-2
+            text-2xl 
+            md:text-3xl"
+          >
+            <select
+              name="select-moves"
+              title="select-moves"
+              value={selectedMove}
+              onChange={(e) => setSelectedMove(Number(e.target.value))}
+              className="select-moves"
+              id="move-select"
+            >
+              {isAscending
+                ? moves
+                : moves
+                    .slice(0, 1)
+                    .concat(moves.slice(1, moves.length).reverse())}
+            </select>
+          </div>
+          <div
+            className="text-center pb-2
+            text-2xl 
+            md:text-3xl"
+          >
+            <SortButton
+              className="sort-button"
+              isAscending={isAscending}
+              setIsAscending={setIsAscending}
+              twcss="mb-2 md:mr-14"
+            />
+            <button
+              className="timetravel-button"
+              type="submit"
+              disabled={selectedMove < 0}
+              onClick={() => jumpTo(selectedMove)}
+            >
+              Timetravel
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="game-info py-2 ">
-        <SortButton isAscending={isAscending} setIsAscending={setIsAscending} />
-        <ol>{isAscending ? moves : moves.slice().reverse()}</ol>
-      </div>
-    </div>
+    </>
   );
 }
 
