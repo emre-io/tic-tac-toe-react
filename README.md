@@ -1,31 +1,20 @@
 # Tic-tac-toe
 
 ## Mobile and PC demo 
-<div class="row">
-  <div class="column">
+<div style="display: flex; gap: 10px;">
+  <div style="height: 370px">
     <img 
       src="demo/demo-screenshot-mobile-tic-tac-toe.png" 
       alt="Tic-Tac-Toe Mobile Demo" 
     />
   </div>
-  <div class="column">
+  <div style="height: 370px">
     <img 
       src="demo/demo-screenshot-pc-tic-tac-toe.png" 
       alt="Tic-Tac-Toe PC Demo" 
     />
   </div>
 </div>
-
-<style>
-.row {
-  display: flex;
-  gap: 10px;
-}
-
-.column {
-  height: 370px;
-}
-</style>
 
 ## Project Background
 

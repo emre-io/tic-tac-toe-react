@@ -216,7 +216,7 @@ export default function Game() {
               value={selectedMove}
               onChange={(e) => setSelectedMove(Number(e.target.value))}
               className="select-moves"
-              id="move-select"
+              id="select-moves"
             >
               {isAscending
                 ? moves
