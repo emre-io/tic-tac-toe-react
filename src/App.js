@@ -171,8 +171,7 @@ export default function Game() {
           </div>
         </div>
         <div
-        // size-full
-          className=" self-center
+          className="size-full self-center
           row-start-5 row-end-9 
           col-start-2 col-end-12
           md:col-start-5 md:col-end-9"
