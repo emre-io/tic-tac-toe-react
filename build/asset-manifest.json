@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/tic-tac-toe-react/static/css/main.41ca6b8f.css",
+    "main.css": "/tic-tac-toe-react/static/css/main.073c9f39.css",
     "main.js": "/tic-tac-toe-react/static/js/main.0d767e2d.js",
     "static/media/Fredoka-Medium.ttf": "/tic-tac-toe-react/static/media/Fredoka-Medium.df3a9eac7eeab07cf635.ttf",
     "index.html": "/tic-tac-toe-react/index.html",
-    "main.41ca6b8f.css.map": "/tic-tac-toe-react/static/css/main.41ca6b8f.css.map",
+    "main.073c9f39.css.map": "/tic-tac-toe-react/static/css/main.073c9f39.css.map",
     "main.0d767e2d.js.map": "/tic-tac-toe-react/static/js/main.0d767e2d.js.map"
   },
   "entrypoints": [
-    "static/css/main.41ca6b8f.css",
+    "static/css/main.073c9f39.css",
     "static/js/main.0d767e2d.js"
   ]
 }
