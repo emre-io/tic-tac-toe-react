@@ -1,22 +1,19 @@
 # Tic-tac-toe
 
 ## Mobile and PC demo 
-<div>
-  <div>
+
+<p float="left">
     <img 
       src="demo/demo-screenshot-mobile-tic-tac-toe.png" 
       alt="Tic-Tac-Toe Mobile Demo" 
-      height="370"
+      height="350"
     />
-  </div>
-  <div>
-    <img 
-      src="demo/demo-screenshot-pc-tic-tac-toe.png" 
-      alt="Tic-Tac-Toe PC Demo" 
-      height="370"
-    />
-  </div>
-</div>
+      <img 
+        src="demo/demo-screenshot-pc-tic-tac-toe.png" 
+        alt="Tic-Tac-Toe PC Demo" 
+        height="350"
+      />
+</p>
 
 ## Project Background
 
