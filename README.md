@@ -15,6 +15,8 @@
       />
 </p>
 
+Game is hosted on this [page](https://emre-io.github.io/tic-tac-toe-react/).
+
 ## Project Background
 
 This project originated as part of the [React Tic-Tac-Toe tutorial](https://react.dev/learn/tutorial-tic-tac-toe) completed on March 31, 2024.  
