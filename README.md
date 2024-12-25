@@ -2,7 +2,7 @@
 
 ## Mobile and PC demo 
 
-<p float="left">
+<p align="center" float="left">
     <img 
       src="demo/demo-screenshot-mobile-tic-tac-toe.png" 
       alt="Tic-Tac-Toe Mobile Demo" 
