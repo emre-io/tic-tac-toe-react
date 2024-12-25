@@ -4,6 +4,8 @@
   "main": "/src/index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "predeploy" : "pnpm run build",
+    "deploy" : "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -17,6 +19,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
+    "gh-pages": "^6.2.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17"
   },
