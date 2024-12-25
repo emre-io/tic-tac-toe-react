@@ -1,14 +1,14 @@
 # Tic-tac-toe
 
 ## Mobile and PC demo 
-<div style="display: flex; gap: 10px;">
-  <div style="height: 370px">
+<div>
+  <div>
     <img 
       src="demo/demo-screenshot-mobile-tic-tac-toe.png" 
       alt="Tic-Tac-Toe Mobile Demo" 
     />
   </div>
-  <div style="height: 370px">
+  <div>
     <img 
       src="demo/demo-screenshot-pc-tic-tac-toe.png" 
       alt="Tic-Tac-Toe PC Demo" 
