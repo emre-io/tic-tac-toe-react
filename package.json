@@ -2,6 +2,7 @@
   "name": "react.dev",
   "version": "0.0.0",
   "main": "/src/index.js",
+  "homepage": "http://emre-io.github.io/tic-tac-toe-react",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "predeploy" : "pnpm run build",
