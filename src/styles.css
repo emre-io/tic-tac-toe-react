@@ -27,7 +27,7 @@
 }
 
 /* Horizontal lines */
-.board-row::after{
+.board-row:not(:last-child)::after{
   border: 4px solid #000;
   border-radius: 4px 4px 4px 4px;
   content: '';
