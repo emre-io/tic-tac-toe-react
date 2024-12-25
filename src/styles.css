@@ -4,6 +4,7 @@
 
 * {
   font-family: fredoka-medium;
+  box-sizing: border-box;
 }
 
 @font-face {
@@ -33,7 +34,7 @@
   left: 0;
   right: 0;
   bottom: -2px;
-  height: 0px;
+  /* bottom: -2px; */
   z-index: 2;
 }
 
