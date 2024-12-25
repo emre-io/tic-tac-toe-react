@@ -1,17 +1,17 @@
 # Tic-tac-toe
 
-## Demo 
+## Mobile and PC demo 
 <div class="row">
   <div class="column">
     <img 
       src="demo/demo-screenshot-mobile-tic-tac-toe.png" 
-      alt="Mobile demo Tic Tac Toe"
+      alt="Tic-Tac-Toe Mobile Demo" 
     />
   </div>
   <div class="column">
     <img 
       src="demo/demo-screenshot-pc-tic-tac-toe.png" 
-      alt="PC demo Tic Tac Toe"
+      alt="Tic-Tac-Toe PC Demo" 
     />
   </div>
 </div>
@@ -27,12 +27,14 @@
 }
 </style>
 
-## Where does this code came from?
+## Project Background
 
-The base for this project was devloped while completing tic-tac-toe [tutorial](https://react.dev/learn/tutorial-tic-tac-toe) for react on Mar 31 24.
-Additional features and improvements mentioned at the end of the tutorial are also implemented.
+This project originated as part of the [React Tic-Tac-Toe tutorial](https://react.dev/learn/tutorial-tic-tac-toe) completed on March 31, 2024.  
+In addition to the base implementation, all the extra challenges and improvements suggested at the end of the tutorial have been integrated into this version.  
 
-## Setup
+The design was further enhanced, and a new user interface component was introduced on December 25, 2024, to improve usability and visual appeal.
+
+## Setup Instructions
 
 Open the project root directory and then install the dependencies via `pnpm install`. Then use `pnpm start` to start a local server and follow the prompts to view the code running in a browser.
 
