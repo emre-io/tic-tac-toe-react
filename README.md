@@ -6,12 +6,14 @@
     <img 
       src="demo/demo-screenshot-mobile-tic-tac-toe.png" 
       alt="Tic-Tac-Toe Mobile Demo" 
+      height="370"
     />
   </div>
   <div>
     <img 
       src="demo/demo-screenshot-pc-tic-tac-toe.png" 
       alt="Tic-Tac-Toe PC Demo" 
+      height="370"
     />
   </div>
 </div>
