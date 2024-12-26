@@ -77,7 +77,7 @@ function SortButton({ isAscending, setIsAscending, twcss }) {
 
   return (
     <button
-      className= {"sort-button " + twcss}
+      className={"sort-button " + twcss}
       type="button"
       onClick={() => handleSort(isAscending)}
     >
@@ -166,9 +166,7 @@ export default function Game() {
             col-start-2 col-end-12
             md:col-start-5 md:col-end-9"
         >
-          <div className="text-3xl md:text-5xl text-center">
-            Tic-Tac-Toe
-          </div>
+          <div className="text-3xl md:text-5xl text-center">Tic-Tac-Toe</div>
         </div>
         <div
           className="size-full self-center relative

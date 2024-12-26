@@ -21,7 +21,7 @@
 
 .board-row {
   display: table-row;
-  position: relative;
+  transform: scale(1);
   width: 100%; 
   height: 33%;
 }
@@ -34,7 +34,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -2%;
+  bottom: -2px;
   z-index: 2;
 }
 
