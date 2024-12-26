@@ -50,9 +50,30 @@
 }
 
 /* Vertical lines */
-.square:not(:last-child)::after{
+.square[id="0"]::after, .square[id="1"]::after {
   border: 4px solid #000;
-  border-radius: 4px 4px 4px 4px;
+  border-radius: 4px 4px 0px 0px;
+  content: '';
+  position: absolute;
+  top: 0; 
+  bottom: 0; 
+  right: -2px;
+  z-index: 2;
+}
+
+.square[id="6"]::after, .square[id="7"]::after {
+  border: 4px solid #000;
+  border-radius: 0px 0px 4px 4px;
+  content: '';
+  position: absolute;
+  top: 0; 
+  bottom: 0; 
+  right: -2px;
+  z-index: 2;
+}
+
+.square[id="3"]::after,.square[id="4"]::after {
+  border: 4px solid #000;
   content: '';
   position: absolute;
   top: 0; 
