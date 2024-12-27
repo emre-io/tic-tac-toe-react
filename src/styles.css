@@ -14,28 +14,16 @@
 
 .board {
   display: table;
-  position: relative;
+  /* position: relative; */
   width: 100%;
   height: 100%;
 }
 
 .board-row {
   display: table-row;
-  transform: scale(1);
+  /* transform: scale(1); */
   width: 100%; 
   height: 33%;
-}
-
-/* Horizontal lines */
-.board-row:not(:last-child)::after{
-  border: 4px solid #000;
-  border-radius: 4px 4px 4px 4px;
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px;
-  z-index: 2;
 }
 
 .square {
@@ -47,6 +35,50 @@
   font-weight: bold;
   width: 33.33%; 
   height: 100%; 
+}
+
+/* Horizontal lines */
+
+.square[id="0"]::before, .square[id="3"]::before {
+  border: 4px solid #000;
+  border-radius: 4px 0px 0px 4px;
+  content: '';
+  position: absolute;
+  bottom: -2px; 
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.square[id="2"]::before, .square[id="5"]::before {
+  border: 4px solid #000;
+  border-radius: 0px 4px 4px 0px;
+  content: '';
+  position: absolute;
+  bottom: -2px; 
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.square[id="1"]::before {
+border: 4px solid #000;
+content: '';
+position: absolute;
+bottom: -2px; 
+right: 0;
+left: 0;
+z-index: 2;
+}
+
+.square[id="4"]::before  {
+  border: 4px solid #000;
+  content: '';
+  position: absolute;
+  bottom: -2px; 
+  right: 0;
+  left: 0;
+  z-index: 2;
 }
 
 /* Vertical lines */
