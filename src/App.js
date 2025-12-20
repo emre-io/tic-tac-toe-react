@@ -86,6 +86,40 @@ function SortButton({ isAscending, setIsAscending, twcss }) {
   );
 }
 
+function SubmitButton({ selectedMove, jumpTo }) {
+  return (
+    <button
+      className="timetravel-button"
+      type="submit"
+      disabled={selectedMove < 0}
+      onClick={() => jumpTo(selectedMove)}
+    >
+      Submit
+    </button>
+  );
+}
+
+export function SelectMove({
+  moves,
+  selectedMove,
+  setSelectedMove,
+  isAscending,
+}) {
+  const displayedMoves = isAscending
+    ? moves
+    : moves.slice(0, 1).concat(moves.slice(1).reverse());
+
+  return (
+    <select
+      value={selectedMove}
+      onChange={(e) => setSelectedMove(Number(e.target.value))}
+      className="select-moves"
+    >
+      {displayedMoves}
+    </select>
+  );
+}
+
 export default function Game() {
   const [history, setHistory] = useState([
     { squares: Array(9).fill(null), index: -1 },
@@ -148,7 +182,7 @@ export default function Game() {
   moves.unshift(
     <option key={"id" + Math.random().toString(16).slice(2)}>
       {" "}
-      Select move to timetravel{" "}
+      Select move to go{" "}
     </option>
   );
   // Delete option for You are at move # move.
@@ -208,20 +242,12 @@ export default function Game() {
             text-2xl 
             md:text-3xl"
           >
-            <select
-              name="select-moves"
-              title="select-moves"
-              value={selectedMove}
-              onChange={(e) => setSelectedMove(Number(e.target.value))}
-              className="select-moves"
-              id="select-moves"
-            >
-              {isAscending
-                ? moves
-                : moves
-                    .slice(0, 1)
-                    .concat(moves.slice(1, moves.length).reverse())}
-            </select>
+            <SelectMove
+              moves={moves}
+              selectedMove={selectedMove}
+              setSelectedMove={setSelectedMove}
+              isAscending={isAscending}
+            />
           </div>
           <div
             className="text-center pb-2
@@ -234,14 +260,7 @@ export default function Game() {
               setIsAscending={setIsAscending}
               twcss="mb-2 md:mr-14"
             />
-            <button
-              className="timetravel-button"
-              type="submit"
-              disabled={selectedMove < 0}
-              onClick={() => jumpTo(selectedMove)}
-            >
-              Timetravel
-            </button>
+            <SubmitButton selectedMove={selectedMove} jumpTo={jumpTo} />
           </div>
         </div>
       </div>
