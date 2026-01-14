@@ -1,124 +1,10 @@
 import { useState } from "react";
+import { Board } from "components/Board"
+import { calculateWinner } from "components/util";
+import { SortButton } from "components/Sort";
+import { SubmitButton } from "components/Submit";
+import { SelectMove } from "components/SelectMove";
 
-function Square({ id, value, onSquareClick, winning = false }) {
-  let squareClass = "square" + (winning ? " winning-square" : "");
-
-  return (
-    <button
-      type="button"
-      title={"Select square # " + id}
-      key={id}
-      id={id}
-      className={squareClass + " text-7xl md:text-9xl"}
-      onClick={onSquareClick}
-    >
-      {value}
-    </button>
-  );
-}
-
-function Board({ xIsNext, squares, onPlay, winningLine }) {
-  function handleClick(i) {
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    const nextSquares = squares.slice();
-    if (xIsNext) {
-      nextSquares[i] = "X";
-    } else {
-      nextSquares[i] = "O";
-    }
-    onPlay(nextSquares, i);
-  }
-
-  function renderSquare(i) {
-    return (
-      <Square
-        key={i}
-        id={i}
-        value={squares[i]}
-        onSquareClick={() => handleClick(i)}
-        winning={winningLine.includes(i)}
-      />
-    );
-  }
-
-  let boardSquares = [];
-  for (let row = 0; row < 3; row++) {
-    let boardRow = [];
-    for (let col = 0; col < 3; col++) {
-      boardRow.push(renderSquare(row * 3 + col));
-    }
-    boardSquares.push(
-      <div key={row} className="board-row">
-        {boardRow}
-      </div>
-    );
-  }
-
-  return <div className="board">{boardSquares}</div>;
-}
-
-function SortButton({ isAscending, setIsAscending, twcss }) {
-  let sortButtonDescription;
-  if (isAscending) {
-    sortButtonDescription = "Moves in descending order";
-  } else {
-    sortButtonDescription = "Moves in ascending order";
-  }
-
-  function handleSort(isAscending) {
-    if (isAscending) {
-      setIsAscending(false);
-    } else {
-      setIsAscending(true);
-    }
-  }
-
-  return (
-    <button
-      className={"sort-button " + twcss}
-      type="button"
-      onClick={() => handleSort(isAscending)}
-    >
-      {sortButtonDescription}
-    </button>
-  );
-}
-
-function SubmitButton({ selectedMove, jumpTo }) {
-  return (
-    <button
-      className="timetravel-button"
-      type="submit"
-      disabled={selectedMove < 0}
-      onClick={() => jumpTo(selectedMove)}
-    >
-      Submit
-    </button>
-  );
-}
-
-export function SelectMove({
-  moves,
-  selectedMove,
-  setSelectedMove,
-  isAscending,
-}) {
-  const displayedMoves = isAscending
-    ? moves
-    : moves.slice(0, 1).concat(moves.slice(1).reverse());
-
-  return (
-    <select
-      value={selectedMove}
-      onChange={(e) => setSelectedMove(Number(e.target.value))}
-      className="select-moves"
-    >
-      {displayedMoves}
-    </select>
-  );
-}
 
 export default function Game() {
   const [history, setHistory] = useState([
@@ -266,24 +152,4 @@ export default function Game() {
       </div>
     </>
   );
-}
-
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return [squares[a], lines[i]];
-    }
-  }
-  return null;
 }
