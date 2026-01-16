@@ -14,9 +14,13 @@
 
 .board {
   display: table;
-  width: 100%;
+  aspect-ratio: 1 / 1; 
+  width: 450px;  
+  /* width: 100%; */
   height: 100%;
 }
+
+
 
 .board-row {
   display: table-row;

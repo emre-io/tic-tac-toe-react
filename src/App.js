@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Board } from "components/Board"
-import { calculateWinner } from "components/util";
+import { Board } from "components/Board";
+import { calculateWinner } from "components/utils";
 import { SortButton } from "components/Sort";
 import { SubmitButton } from "components/Submit";
 import { SelectMove } from "components/SelectMove";
-
 
 export default function Game() {
   const [history, setHistory] = useState([
@@ -89,7 +88,7 @@ export default function Game() {
           <div className="text-3xl md:text-5xl text-center">Tic-Tac-Toe</div>
         </div>
         <div
-          className="size-full self-center relative
+          className="flex justify-center items-center relative
           row-start-5 row-end-9 
           col-start-2 col-end-12
           md:col-start-5 md:col-end-9"
