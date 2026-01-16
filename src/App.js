@@ -85,13 +85,13 @@ export default function Game() {
             col-start-2 col-end-12
             md:col-start-5 md:col-end-9"
         >
-          <div className="text-3xl md:text-5xl text-center">Tic-Tac-Toe</div>
+          <div className="text-xl md:text-3xl text-center">Tic-Tac-Toe</div>
         </div>
         <div
-          className="flex justify-center items-center relative
+          className="flex justify-center items-center p-12
           row-start-5 row-end-9 
           col-start-2 col-end-12
-          md:col-start-5 md:col-end-9"
+          md:col-start-5 md:col-end-9 "
         >
           <Board
             xIsNext={xIsNext}
@@ -108,15 +108,15 @@ export default function Game() {
         >
           <div
             className="text-center
-            text-2xl 
-            md:text-3xl md:pb-2"
+            text-xl 
+            md:text-xl"
           >
             {status}
           </div>
           <div
             className="text-center pb-2
-            text-2xl 
-            md:text-3xl"
+            text-xl 
+            md:text-xl"
           >
             {currentMove > 0
               ? "You are at move #" + currentMove + "."
@@ -124,8 +124,8 @@ export default function Game() {
           </div>
           <div
             className="text-center pb-2
-            text-2xl 
-            md:text-3xl"
+            text-xl 
+            md:text-xl"
           >
             <SelectMove
               moves={moves}
@@ -136,14 +136,14 @@ export default function Game() {
           </div>
           <div
             className="text-center pb-2
-            text-2xl 
-            md:text-3xl"
+            text-xl 
+            md:text-xl"
           >
             <SortButton
               className="sort-button"
               isAscending={isAscending}
               setIsAscending={setIsAscending}
-              twcss="mb-2 md:mr-14"
+              twcss="mb-4 md:mr-4"
             />
             <SubmitButton selectedMove={selectedMove} jumpTo={jumpTo} />
           </div>
